@@ -23,18 +23,25 @@ export const TimeControls = () => {
     setSelectedEvent(timeline.events[index]);
   }, [index]);
 
+  useEffect(() => {
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+    };
+
+    window.addEventListener("keydown", keyHandler);
+
+    return () => window.removeEventListener("keydown", keyHandler);
+  });
+
   const handleNext = () => {
-    setIndex((prev) => {
-      if (prev + 1 >= timeline.events.length) return prev;
-      return prev + 1;
-    });
+    if (index + 1 >= timeline.events.length) return;
+    setIndex((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    setIndex((prev) => {
-      if (prev - 1 < 0) return 0;
-      return prev - 1;
-    });
+    if (index - 1 < 0) return;
+    setIndex((prev) => prev - 1);
   };
 
   return (
