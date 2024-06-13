@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 interface TimeState {
+  timeline: TimelineType | null;
+  setTimeline: (timeline: TimelineType) => void;
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType) => void;
   dates: string[];
@@ -8,6 +10,8 @@ interface TimeState {
 }
 
 const useTimeStore = create<TimeState>()((set) => ({
+  timeline: null,
+  setTimeline: (timeline) => set({ timeline }),
   selectedEvent: null,
   setSelectedEvent: (event) => set({ selectedEvent: event }),
   dates: [],

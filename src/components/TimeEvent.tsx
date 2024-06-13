@@ -1,4 +1,5 @@
 import useTimeStore from "../store/useTimeStore";
+import { TimeControls } from "./TimeControls";
 
 export const TimeEvent = () => {
   const { selectedEvent } = useTimeStore((state) => state);
@@ -7,7 +8,7 @@ export const TimeEvent = () => {
 
   return (
     <div className="h-96">
-      <div className="flex gap-4 h-full">
+      <div className="flex gap-4 h-full relative">
         {selectedEvent.image && (
           <img
             src={selectedEvent.image}
@@ -26,6 +27,7 @@ export const TimeEvent = () => {
             {selectedEvent.description}
           </div>
         </div>
+        <TimeControls />
       </div>
     </div>
   );

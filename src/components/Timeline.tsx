@@ -9,9 +9,12 @@ type Props = {
 };
 
 export const Timeline = ({ data }: Props) => {
-  const { setSelectedEvent, setDates } = useTimeStore((state) => state);
+  const { setTimeline, setSelectedEvent, setDates } = useTimeStore(
+    (state) => state,
+  );
 
   useEffect(() => {
+    setTimeline(data);
     setSelectedEvent(data.events[0]);
     setDates(retrieveDates(data.events));
   }, []);
